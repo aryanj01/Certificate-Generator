@@ -49,7 +49,7 @@
 <!-- you can put the commands inside the three grave accents -->
 
 ```bash
-$ git clone https://github.com/Greatgabbar/vithack.git
+$ git clone https://github.com/aryanj01/Certificate-Generator.git
 $ cd vithack
 ```
 
