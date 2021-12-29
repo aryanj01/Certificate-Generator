@@ -1,0 +1,36 @@
+<%- include('partials/header', {title: "Node File Uploads"}) %>
+
+	<div class="section no-pad-bot" id="index-banner">
+		<div class="container">
+			<br><br>
+			<h1 class="header center blue-text">Global Cert</h1>
+			<div class="row center">
+				<h5 class="header col s12 light">Global Certificates is an online platform for hosting and distribution of
+					e-verifiable certificates</h5>
+			</div>
+			<br><br>
+		</div>
+		<br><br>
+		<br><br>
+	</div>
+	<div class="container">
+		<div class="row center">
+			<h4 class="header col s12 bold">Upload Your Certifcate Template</h4>
+			<h5 class="header col s12 bold">First Select Csv file then Template</h5>
+		</div>
+		<%= typeof msg != 'undefined' ? msg : '' %>
+		<form action="/upload" method="POST" enctype="multipart/form-data">
+			<div class="file-field input-field">
+				<div class="btn">
+					<span>Upload</span>
+					<input name="myImage" type="file" multiple >
+				</div>
+				<div class="file-path-wrapper">
+					<input class="file-path validate" type="text" placeholder="Upload template and csv file">
+				</div>
+			</div>
+			<button type="submit" class="btn">Submit</button>
+		</form>
+	</div>
+
+<%- include('partials/footer'); %>

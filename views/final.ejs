@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <title>Final Certi</title>
+</head>
+<body>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Global Cert</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Create Certifcate Online</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+        <li><a href="#">Create Certificate Online</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center blue-text">Global Cert</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">Global Certificates is an online platform for hosting and distribution of
+          e-verifiable certificates</h5>
+      </div>
+      <br><br>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row center">
+      <h4 class="header col s12 bold">Your Final Certifcate Preview</h4>
+    </div>
+    <!-- <div class="col s12 m4 l2"><p>s12 m4</p></div> -->
+    <div id="target" class="col s12 m4 l8">
+
+    </div>
+    <button id="btn-1" class="btn waves-effect waves-light" type="submit" name="action">
+      Download All
+    </button>
+  </div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', (e) => {
+      const file = localStorage.getItem('file');
+      const len = localStorage.getItem('length');
+      console.log(file, len);
+      let output = '';
+      for (let i = 0; i < len; i++) {
+        output += `
+        <img src=/final/${file}/${i}.png class=\"responsive-img\">
+        <button id=final/${file}/${i}.png class="btn waves-effect waves-light gg" type="submit" name="action">Download</button>
+        `;
+      }
+      document.getElementById('target').innerHTML = output;
+
+      document.querySelectorAll('.gg').forEach((data) => {
+        data.addEventListener('click', (e) => {
+          const id = e.target.id.split('/').splice(2, 1);
+          const no = e.target.id.split('/').splice(3, 1);
+          window.open(`/api/${id[0]}-${no[0]}`);
+        })
+      })
+    })
+    document.getElementById('btn-1').addEventListener('click',(e)=>{
+      const file=localStorage.getItem('file');
+      const id = file.split('/');
+      window.open(`/api/all/${id[1]}`);
+    })
+  </script>
+
+<%- include('partials/footer') %>
